@@ -50,6 +50,8 @@
         <a href="#finans" class="hover:text-brand-600 transition-colors">Finans</a>
         <a href="#saglik" class="hover:text-brand-600 transition-colors">Sağlık</a>
         <a href="#yasam" class="hover:text-brand-600 transition-colors">Yaşam</a>
+        <span id="nav-premium-badge" class="hidden px-3 py-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold rounded-full">⭐ Premium</span>
+        <a id="premium-btn" href="premium.html" class="px-4 py-2 bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold rounded-lg text-xs hover:opacity-90 transition-opacity">⭐ Premium Al</a>
       </div>
       <div class="flex items-center gap-3">
         <button onclick="toggleSearch()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
@@ -610,6 +612,20 @@
     if (s) s.classList.remove('hidden');
     e.target.reset();
   }
+
+  // Premium kontrolü
+  (function() {
+    const isPremium = localStorage.getItem('premium') === 'true';
+    if (isPremium) {
+      // Badge göster, buton gizle
+      const badge = document.getElementById('nav-premium-badge');
+      const btn = document.getElementById('premium-btn');
+      if (badge) badge.classList.remove('hidden');
+      if (btn) btn.classList.add('hidden');
+      // Reklam alanlarını gizle
+      document.querySelectorAll('.ad-slot').forEach(el => el.style.display = 'none');
+    }
+  })();
 </script>
 </body>
 </html>
